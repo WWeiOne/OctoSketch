@@ -43,7 +43,7 @@
 #include "../../queue/readerwriterqueue.h"
 
 
-#define NUM_RX_QUEUE 10
+#define NUM_RX_QUEUE 6
 
 #define UPPER_LENGTH 0xa0
 #define TARGET_LENGTH 0x80
@@ -144,6 +144,8 @@ print_stats()
             old_total_packets_rx = total_packets_rx;
             old_total_core_rx = total_core_rx;
 	    }
+        if (force_quit)
+            return;
 	}
 }
 

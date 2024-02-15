@@ -53,6 +53,10 @@ public:
                 idx = 0;
                 modify_threshold();
             }
+            if (force_quit){
+                delete sketch;
+                return;
+            }
         }
 
         delete sketch;
@@ -104,7 +108,8 @@ public:
             for(uint32_t i = 0;i < nb_rx;++i){
                 insert_child(sketch, que[queue_id], item[i]);
             }
-
+            if (force_quit)
+                return;
             /* >8 End of read packet from RX queues. */
         }
     }

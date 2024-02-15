@@ -54,7 +54,7 @@ check_all_ports_link_status(uint32_t port_mask)
 
 	printf("\nChecking link status");
 	fflush(stdout);
-	for (count = 0; count <= MAX_CHECK_TIME; count++) {
+	for (count = 0; count <= 0; count++) {
 		if (force_quit)
 			return;
 		all_ports_up = 1;
@@ -126,8 +126,10 @@ main_dpdk(int argc, char **argv)
 	unsigned nb_ports_in_mask = 0;
 	unsigned int nb_lcores = 1;
 	unsigned int nb_mbufs;
-
-	port_conf.rxmode.split_hdr_size = 0;
+	
+	// DPDK release_22_11: removed this field 
+	//port_conf.rxmode.split_hdr_size = 0;
+	
 	port_conf.rxmode.mq_mode = RTE_ETH_MQ_RX_RSS;
 	port_conf.txmode.mq_mode = RTE_ETH_MQ_TX_NONE;
 	port_conf.rx_adv_conf.rss_conf.rss_key = NULL;
@@ -137,6 +139,7 @@ main_dpdk(int argc, char **argv)
 	ret = rte_eal_init(argc, argv);
 	if (ret < 0)
 		rte_exit(EXIT_FAILURE, "Invalid EAL arguments\n");
+
 	argc -= ret;
 	argv += ret;
 
@@ -247,7 +250,7 @@ main_dpdk(int argc, char **argv)
 	/* initialize port stats */
 	memset(&port_statistics, 0, sizeof(port_statistics));
 
-	//check_all_ports_link_status(l2fwd_enabled_port_mask);
+	// check_all_ports_link_status(l2fwd_enabled_port_mask);
 
 	return 0;
 }
