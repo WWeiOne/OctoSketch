@@ -19,6 +19,7 @@ int distribute(void *arg){
 
     set = is_used[0].exchange(set);
     if(!set){
+        while(1){}
         sketch->coordinator(NUM_RX_QUEUE);
         return 2;
     }

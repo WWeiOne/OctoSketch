@@ -43,7 +43,7 @@
 #include "../../queue/readerwriterqueue.h"
 
 
-#define NUM_RX_QUEUE 6
+#define NUM_RX_QUEUE 5
 
 #define UPPER_LENGTH 0xa0
 #define TARGET_LENGTH 0x80
